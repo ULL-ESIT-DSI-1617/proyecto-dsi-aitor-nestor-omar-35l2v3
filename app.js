@@ -35,20 +35,30 @@ const User = require('./models/user.js');
 //-----------------------------------------------
 
 let auth = function(req, res, next) {
+    console.log("Entra en calendar");
     let aux = 0;
-    for (let i = 0; i < data.length; i++) {
-        let user = data[i].username;
-        if (req.session.user == user)
+    console.log(req.session.user);
+    User.findOne({ 'name': req.session.user },function (err, obj) {
+        console.log(obj);
+        if(obj == null) {
+            console.log("No hay user en la session");
+            aux = 0;
+        }
+        else{
+            console.log("Hay user en la session");
             aux = 1;
+        }
+        if (aux == 0){
+            return res.redirect('/login');
 
-    }
-    if (aux == 0){
-        return res.redirect('/login');
+        }
+        else {
+            console.log("aux =1");
+            return next();
+        }
 
-    }
-    else if(aux == 1){
-        return next();
-    }
+    });
+
 };
 
 
@@ -62,7 +72,11 @@ app.post('/login',function (req,res) {
         console.log(obj);
         if (err) return handleError(err);
         if(bcrypt.compareSync(req.body.password, obj.password)){
-            console.log("Usser y pass correctos")
+            console.log("Usser y pass correctos");
+            console.log("Success!!");
+            req.session.user = req.body.name;
+            res.redirect('/calendar')
+
         }
     })
 });
@@ -73,13 +87,27 @@ app.post('/registro',function (req,res) {
     user.save(function (err) {
         if (err) return handleError(err);
         console.log("Success!!");
+        req.session.user = req.body.name;
+        res.redirect('/calendar')
     })
     }
 );
+app.get('/session',function(req,res){
 
-app.get('/calendar/*?',
+    console.log(req.session.user);
+
+
+});
+app.get('/calendar',
     auth  // next only if authenticated
 );
+app.get('/calendar',function(req,res){
+
+    res.send("Entra");
+
+
+});
+
 /*
 app.use(login);
 
@@ -93,4 +121,4 @@ app.post('/login',function (req,res) {
     next();
 });*/
 
-app.listen(3000);
+app.listen(3001);
