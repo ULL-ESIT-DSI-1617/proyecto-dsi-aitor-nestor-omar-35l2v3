@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-aitor-nestor-omar-35l2v3/issues"
   },
-  "homepage": "https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-aitor-nestor-omar-35l2v3#readme"
+  "homepage": "https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-aitor-nestor-omar-35l2v3#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "cookie-parser": "^1.4.3",
+    "express-session": "^1.15.2",
+    "mongoose": "^4.9.8"
+  }
 }

@@ -31,12 +31,7 @@ app.use(session({
 
 //-----------------------------------------------MODELOS
 
-let User = new Schema({
-    name            :   String,
-    password        :   String
-
-});
-let User_m = mongoose.model('User', User);
+const User = require('./models/user.js');
 //-----------------------------------------------
 
 let auth = function(req, res, next) {
@@ -55,18 +50,33 @@ let auth = function(req, res, next) {
         return next();
     }
 };
+
+
 app.get('/login',function (req,res) {
-   res.render('index.ejs')
+   res.render('index.ejs');
 });
+
+app.post('/login',function (req,res) {
+    console.log(req.body.name);
+    User.findOne({ 'name': req.body.name },function (err, obj) {
+        console.log(obj);
+        if (err) return handleError(err);
+        if(bcrypt.compareSync(req.body.password, obj.password)){
+            console.log("Usser y pass correctos")
+        }
+    })
+});
+
 app.post('/registro',function (req,res) {
     let pass = bcrypt.hashSync(req.body.password)
-    let user = new User_m ({"name":req.body.name, "password":pass});
+    let user = new User ({"name":req.body.name, "password":pass});
     user.save(function (err) {
         if (err) return handleError(err);
         console.log("Success!!");
     })
     }
 );
+
 app.get('/calendar/*?',
     auth  // next only if authenticated
 );
