@@ -62,6 +62,7 @@ let auth = function(req, res, next) {
 
 };
 
+app.use(express.static('./public'));
 
 app.get('/login',function (req,res) {
    res.render('index.ejs');
