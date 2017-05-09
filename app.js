@@ -1,4 +1,5 @@
 "use strict";
+
 let express = require('express'),
     app = express(),
     session = require('express-session');
@@ -102,10 +103,9 @@ app.get('/calendar',
     auth  // next only if authenticated
 );
 app.get('/calendar',function(req,res){
-
-    res.send("Entra");
-
-
+    
+    res.render('timeline.ejs');
+    //res.send("Entra");
 });
 
 /*
