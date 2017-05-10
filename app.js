@@ -6,9 +6,11 @@ let express = require('express'),
 let cookieParser = require('cookie-parser');
 let path = require('path');
 let util = require("util");
-var jsonfile = require('jsonfile')
-var bodyParser = require('body-parser');
+let jsonfile = require('jsonfile')
+let bodyParser = require('body-parser');
 let bcrypt = require("bcrypt-nodejs");
+let passport = require('passport');
+let Strategy = require('passport-twitter').Strategy;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 8086));
@@ -138,3 +140,4 @@ app.post('/login',function (req,res) {
 });*/
 
 app.listen(3001);
+
