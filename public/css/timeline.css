@@ -1,3 +1,12 @@
+body {
+  background: #649173;
+  background: -webkit-linear-gradient(to right, #649173, #dbd5a4);
+  background: linear-gradient(to right, #649173, #dbd5a4);
+
+}
+div.timeline-panel {
+    background-color: rgba(235, 235, 235, 1)
+}
 .timeline {
     list-style: none;
     padding: 20px 0 20px;
@@ -43,8 +52,9 @@
     border-radius: 10px;
     padding: 10px;
     position: relative;
-    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    background-color: rgba(235, 235, 235, 1)
+    -webkit-box-shadow: 0 1px 6px rgba(36, 36, 36, 0.72);
+    box-shadow: 0 1px 6px rgba(36, 36, 36, 0.72);
 }
 
 .timeline > li > .timeline-panel:before {
