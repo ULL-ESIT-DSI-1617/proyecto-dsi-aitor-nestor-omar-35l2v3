@@ -1,74 +1,54 @@
-<!DOCTYPE html>
 <head>
-    <!-- CSS BootStrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Estilos -->
-    <link href="/css/timeline.css" rel="stylesheet">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    <% include includes/navbar.ejs %>
+        <!-- Estilos -->
+        <link href="/css/timeline.css" rel="stylesheet">
 </head>
-
-<body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Desarrollo de Sistemas Informáticos</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="/login">Perfil</a></li>
-                <li><a href="/logout">Logout</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!--////////////////////////////////// Calendar timeline ////////////////////////////////-->
+<!--////////////////////////////////// Calendar timeline ////////////////////////////////-->
 <br>
 <br>
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 col-md-offset-4"><h2>Timeline de eventos</h2></div>
-  </div>
-<br>
-</div>
-    <div class="container">
-        <ul class="timeline">
-            <li>
-                <div class="timeline-badge primary"><a class="timeline-icon"><i class="glyphicon glyphicon-record" rel="tooltip" title="Prueba hace un rato" id=""></i></a></div>
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <p style="margin:auto;">Prueba1</p>
-                    </div>
-                    <div class="timeline-body">
-                        <p>Prueba de evento para timeline vertical</p>
-                    </div>
-                    <div class="timeline-footer">
-                        <a class="pull-right">09/05/2017, 19:23</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="timeline-inverted">
-                <div class="timeline-badge primary"><a class="timeline-icon"><i class="glyphicon glyphicon-record invert" rel="tooltip" title="Prueba hace un rato 2" id=""></i></a></div>
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <p>Prueba2</p>
-                    </div>
-                    <div class="timeline-body">
-                        <p>Prueba de evento invertido para timeline vertical</p>
-                    </div>
-                    <div class="timeline-footer">
-                        <a class="pull-right">08/05/2017, 17:34</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="clearfix" style="float: none;"></li>
-        </ul>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-4">
+            <h2>Timeline de eventos</h2></div>
     </div>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/timeline.js"></script>
+    <br>
+</div>
+<div class="container">
+    <ul class="timeline">
+        <li>
+            <div class="timeline-badge primary"><a class="timeline-icon"><i class="glyphicon glyphicon-record" rel="tooltip" title="Prueba hace un rato" id=""></i></a></div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <p style="margin:auto;">Prueba1</p>
+                </div>
+                <div class="timeline-body">
+                    <p>Prueba de evento para timeline vertical</p>
+                </div>
+                <div class="timeline-footer">
+                    <a class="pull-right">09/05/2017, 19:23</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="timeline-inverted">
+            <div class="timeline-badge primary"><a class="timeline-icon"><i class="glyphicon glyphicon-record invert" rel="tooltip" title="Prueba hace un rato 2" id=""></i></a></div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <p>Prueba2</p>
+                </div>
+                <div class="timeline-body">
+                    <p>Prueba de evento invertido para timeline vertical</p>
+                </div>
+                <div class="timeline-footer">
+                    <a class="pull-right">08/05/2017, 17:34</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="clearfix" style="float: none;"></li>
+    </ul>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/timeline.js"></script>
 </body>
