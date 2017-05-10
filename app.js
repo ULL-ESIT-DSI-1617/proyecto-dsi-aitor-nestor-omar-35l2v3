@@ -34,6 +34,59 @@ app.use(session({
     saveUninitialized: true
 }));
 
+//----------------------------------------------- passport
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+passport.use(new Strategy({
+    consumerKey: 'MHgOl757iTsvmUaX3nsvJwoCK',
+    consumerSecret: 'UioRKHKZFMIGUmDJfPPUyNQzqsyk0TrcGPodT8lZ3ViXk2pH5Z',
+    callbackURL: 'http://localhost:3001/login/twitter/return'
+  },
+  function (req, token, tokenSecret, profile, callback) {
+    
+      
+        console.log(profile.username);
+          process.nextTick(function () { //Asynchronous
+          User.findOne({
+                  name      : profile.username
+              },
+              function (err, user) {
+                  if (err) {
+                      callback(err);
+                  }
+                  if (user) { //We found the user
+                      return callback(null, user);
+                  } else { //User does not exist
+                      console.log("HOLA");
+                      let pass = bcrypt.hashSync("twitter")
+                      var newUser = new User({
+                          name    : profile.username,
+                          password : pass
+                          }
+                      );
+                      newUser.save(function(err, newUser, numAffected) {
+                          if (err) {
+                              console.log("Error when saving new user: ");
+                              console.error(err);
+                          }
+                          return callback(null, newUser);
+                      });
+                  }
+              }
+          ); 
+      });
+  }));
+
 //-----------------------------------------------MODELOS
 
 const User = require('./models/user.js');
@@ -70,6 +123,16 @@ app.use(express.static('./public'));
 
 app.get('/login', function(req, res) {
     res.render('index.ejs');
+});
+
+
+app.get('/login/twitter',
+  passport.authenticate('twitter'));
+
+app.get('/login/twitter/return', 
+    passport.authenticate('twitter', { failureRedirect: '/login' }),
+    function(req, res) {
+      res.render('timeline.ejs');
 });
 
 app.post('/login', function(req, res) {
