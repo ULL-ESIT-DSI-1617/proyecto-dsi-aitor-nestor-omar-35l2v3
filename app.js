@@ -187,6 +187,7 @@ app.get('/login/github',
 app.get('/login/github/return', 
       passport.authenticate('github', { failureRedirect: '/login' }),
       function(req, res) {
+      
         res.render('timeline.ejs');
 });
 
