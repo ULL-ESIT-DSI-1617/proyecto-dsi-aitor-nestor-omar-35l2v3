@@ -1,0 +1,43 @@
+<% include includes/navbar.ejs %>
+<div class="bootstrap-iso">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 card">
+
+                <!-- Form code begins -->
+                <form method="post">
+                    <div class="form-group"> <!-- Date input -->
+                        <label class="control-label" for="date">Titulo</label>
+                        <input class="form-control" id="" name="title" placeholder="Titulo" type="text"/>
+                        <label class="control-label" for="date">Fecha</label>
+                        <input class="form-control" data-format="dd/MM/yyyy hh:mm:ss" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+                        <label class="control-label" for="date">Hora</label>
+                        <input class="form-control" id="" name="hour" placeholder="Hora" type="text"/>
+                        <label class="control-label" for="date">Descripción</label>
+                        <textarea class="form-control" id="exampleTextarea" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group"> <!-- Submit button -->
+                        <button class="btn btn-primary " name="submit" type="submit">Guardar</button>
+                    </div>
+                </form>
+                <!-- Form code ends -->
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            var date_input=$('input[name="date"]'); //our date input has the name "date"
+            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+            var options={
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            };
+            date_input.datepicker(options);
+        })
+    </script>
+
+
+<% include includes/footer.ejs %>
