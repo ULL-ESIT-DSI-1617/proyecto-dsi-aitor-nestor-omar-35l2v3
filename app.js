@@ -188,6 +188,7 @@ app.get('/login/github',
 app.get('/login/github/return', 
       passport.authenticate('github', { failureRedirect: '/login' }),
       function(req, res) {
+      
         res.render('timeline.ejs');
 });
 
@@ -196,7 +197,7 @@ app.post('/login', function(req, res) {
     console.log(req.body.name);
     User.findOne({
         'name': req.body.name
-    }, function(err, obj) {
+    }, function(err, obj) {  
         console.log(obj);
         if (err) return handleError(err);
         if (bcrypt.compareSync(req.body.password, obj.password)) {
@@ -259,5 +260,5 @@ app.post('/login',function (req,res) {
     next();
 });*/
 
-app.listen(3002);
+app.listen(3001);
 
