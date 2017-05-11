@@ -8,12 +8,25 @@ body {
     background-image: url(../images/background.png)!important;
     background-size: 100%;
 }
-.card{
-    background-color: #eee;
-    border-radius: 5px 5px 5px 5px;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border: 0px solid #000000;
+.card {
+  background-color: #eee;
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border: 0px solid #000000;
+}
+
+.fa-2x {
+  font-size: 2em;
+  margin-top: -23% !important;
+}
+.bootstrap-iso {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333333;
+  background-color: transparent;
+}
 
 /*
 * Estilos para el calendar

@@ -213,6 +213,9 @@ app.post('/login', function(req, res) {
                 res.redirect('/calendar')
 
             }
+            else{
+                res.render('index_error');
+            }
         }
         catch(err){
             res.render('index_error');
@@ -239,7 +242,7 @@ app.get('/session', function(req, res) {
 
 
 });
-app.get('/calendar',
+app.get('/*',
     auth // next only if authenticated
 );
 app.get('/calendar', function(req, res) {
@@ -260,6 +263,13 @@ app.post('/profile', function(req, res) {
     User.findOneAndUpdate({name: req.session.user},{$set:{password:pass}},{new: true},function(err,dox){
         res.render('profile_success',{ name: req.session.user});
     })
+});
+
+app.get('/calendar/create',function (req,res) {
+    res.render('create');
+});
+app.post('/calendar/create',function (req,res) {
+    console.log(req.body);
 });
 
 
