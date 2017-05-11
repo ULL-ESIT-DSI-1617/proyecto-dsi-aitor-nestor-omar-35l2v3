@@ -1,7 +1,8 @@
 let User = require("../models/user");
-let strategy = require('passport-github');
-var chai = require('chai');
-var expect = chai.expect;  
+let strategyGithub = require('passport-github');
+let strategyTwitter = require('passport-twitter');
+let chai = require('chai');
+let expect = chai.expect;  
 
 let prueba = User({
     nombre: 'Usuario',
@@ -21,16 +22,16 @@ describe("Mongodb funciona correctamente", function () {
   })
 });
 
-describe('passport-github', function() {
+describe('Passport', function() {
     
-  it('Se exporta correctamente', function() {
-    expect(strategy.Strategy).to.be.a('function');
+  it('Se exporta correctamente passport-github', function() {
+    expect(strategyGithub.Strategy).to.be.a('function');
   });
-    
-  it('Se exporta como un modulo correctamente', function() {
-    expect(strategy).to.be.a('function');
-    expect(strategy).to.equal(strategy.Strategy);
+  
+  it('Se exporta correctamente passport-twtter', function() {
+    expect(strategyTwitter.Strategy).to.be.a('function');
   });
+  
   
 });
 
