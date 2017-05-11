@@ -6,9 +6,12 @@ let express = require('express'),
 let cookieParser = require('cookie-parser');
 let path = require('path');
 let util = require("util");
-var jsonfile = require('jsonfile')
-var bodyParser = require('body-parser');
+let jsonfile = require('jsonfile')
+let bodyParser = require('body-parser');
 let bcrypt = require("bcrypt-nodejs");
+let passport = require('passport');
+let Strategy = require('passport-twitter').Strategy;
+let GitHubStrategy = require('passport-github').Strategy;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 8086));
@@ -31,6 +34,103 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+//----------------------------------------------- passport
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+passport.use(new Strategy({
+    consumerKey: 'MHgOl757iTsvmUaX3nsvJwoCK',
+    consumerSecret: 'UioRKHKZFMIGUmDJfPPUyNQzqsyk0TrcGPodT8lZ3ViXk2pH5Z',
+    callbackURL: 'http://localhost:3001/login/twitter/return'
+  },
+  function (req, token, tokenSecret, profile, callback) {
+    
+      
+        console.log(profile.username);
+          process.nextTick(function () { //Asynchronous
+          User.findOne({
+                  name      : profile.username
+              },
+              function (err, user) {
+                  if (err) {
+                      callback(err);
+                  }
+                  if (user) { //We found the user
+                      console.log(profile.id);
+                      return callback(null, user);
+                  } else { //User does not exist
+                      let pass = bcrypt.hashSync("twitter")
+                      var newUser = new User({
+                          name    : profile.username,
+                          password : pass
+                          }
+                      );
+                      newUser.save(function(err, newUser, numAffected) {
+                          if (err) {
+                              console.log("Error when saving new user: ");
+                              console.error(err);
+                          }
+                          return callback(null, newUser);
+                      });
+                  }
+              }
+          ); 
+      });
+  }));
+  
+  passport.use(new GitHubStrategy({
+    clientID: '1db3c11f622dce53865c',
+    clientSecret: 'aedc1432b6c85c022af69356e7735ee18c93beba',
+    callbackURL: "http://localhost:3001/login/github/return"
+  },
+  function (req, token, tokenSecret, profile, callback) {
+    
+      
+        console.log(profile.username);
+          process.nextTick(function () { //Asynchronous
+          User.findOne({
+                  name      : profile.username
+              },
+              function (err, user) {
+                  if (err) {
+                      callback(err);
+                  }
+                  if (user) { //We found the user
+                      console.log(profile.id);
+                      return callback(null, user);
+                  } else { //User does not exist
+                      let pass = bcrypt.hashSync("github")
+                      var newUser = new User({
+                          name    : profile.username,
+                          password : pass
+                          }
+                      );
+                      newUser.save(function(err, newUser, numAffected) {
+                          if (err) {
+                              console.log("Error when saving new user: ");
+                              console.error(err);
+                          }
+                          return callback(null, newUser);
+                      });
+                  }
+              }
+          ); 
+      });
+  }));
+  
+  
+  
+  
 
 //-----------------------------------------------MODELOS
 
@@ -69,6 +169,27 @@ app.use(express.static('./public'));
 app.get('/login', function(req, res) {
     res.render('index.ejs');
 });
+
+
+app.get('/login/twitter',
+  passport.authenticate('twitter'));
+
+app.get('/login/twitter/return', 
+    passport.authenticate('twitter', { failureRedirect: '/login' }),
+    function(req, res) {
+      res.render('timeline.ejs');
+});
+
+
+app.get('/login/github',
+  passport.authenticate('github'));
+  
+app.get('/login/github/return', 
+      passport.authenticate('github', { failureRedirect: '/login' }),
+      function(req, res) {
+        res.render('timeline.ejs');
+});
+
 
 app.post('/login', function(req, res) {
     console.log(req.body.name);
@@ -138,3 +259,4 @@ app.post('/login',function (req,res) {
 });*/
 
 app.listen(3001);
+
