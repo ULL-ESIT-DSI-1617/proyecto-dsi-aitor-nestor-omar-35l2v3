@@ -242,9 +242,7 @@ app.get('/session', function(req, res) {
 
 
 });
-app.get('/*',
-    auth // next only if authenticated
-);
+
 app.get('/calendar', function(req, res) {
 
     res.render('timeline.ejs');
