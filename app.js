@@ -166,9 +166,14 @@ let auth = function(req, res, next) {
 };
 
 app.use(express.static('./public'));
-
+app.get('/',auth);
 app.get('/login', function(req, res) {
-    res.render('index.ejs');
+    if(req.session.user == null) {
+        res.render('index.ejs');
+    }
+    else{
+        res.redirect('/calendar')
+    }
 });
 
 
@@ -199,13 +204,18 @@ app.post('/login', function(req, res) {
         'name': req.body.name
     }, function(err, obj) {  
         console.log(obj);
-        if (err) return handleError(err);
-        if (bcrypt.compareSync(req.body.password, obj.password)) {
-            console.log("Usser y pass correctos");
-            console.log("Success!!");
-            req.session.user = req.body.name;
-            res.redirect('/calendar')
+        try {
+            if (err) return handleError(err);
+            if (bcrypt.compareSync(req.body.password, obj.password)) {
+                console.log("Usser y pass correctos");
+                console.log("Success!!");
+                req.session.user = req.body.name;
+                res.redirect('/calendar')
 
+            }
+        }
+        catch(err){
+            res.render('index_error');
         }
     })
 });
