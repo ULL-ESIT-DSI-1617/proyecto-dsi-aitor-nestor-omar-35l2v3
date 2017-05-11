@@ -5,63 +5,50 @@
 <br>
 <div class="container">
 
+    <div class="col-md-4 col-md-offset-1 card">
+        <form class="form-signin" method="POST" action="/registro">
+            <h2 class="form-signin-heading">Registro</h2>
+            <input type="nick" id="nick" class="form-control" name="name" placeholder="Nick" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+            <button class="btn btn-danger btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+
     <div class="row">
         <div class="col-md-4 col-md-offset-2"><h2>Login:</h2></div>
         <a href="/login/twitter">Log In with Twitter </a>
         <a href="/login/github">Log In with Github </a>
+
     </div>
-    <br>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <form class="form-inline" method="POST" action="/login">
-                <div class="form-group">
-                    <label for="exampleInputName2">Nombre</label>
-                    <input type="text" class="form-control" name="name">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail2">Password</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-                <button type="submit" class="btn btn-success">Login</button>
-            </form>
+
+    <div class="col-md-4 col-md-offset-2 card">
+        <form class="form-signin" method="POST" action="/login">
+            <h2 class="form-signin-heading">Login</h2>
+            <input type="nick" id="nick" class="form-control" name="name" placeholder="Nick" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+            <button class="btn btn-success btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+
+</div> <!-- /container -->
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="col-md-4">
+            <p class="navbar-text pull-left"><a target="_blank" href="https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-aitor-nestor-omar-35l2v3"><i class="fa fa-github" aria-hidden="true"></i></a>
+                <a href="https://github.com/ULL-ESIT-DSI-1617/proyecto-dsi-aitor-nestor-omar-35l2v3" target="_blank" >ULL-ESIT-DSI-1617</a>
+            </p>
         </div>
-
-        <div class="col-md-2"></div>
-    </div>
-    <br>
-    <br>
-    <br>
-
-<hr>
-    <br>
-    <br>
-    <br>
-
-    <div class="row">
-        <div class="col-md-4 col-md-offset-2"><h2>Registro:</h2></div>
-
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <form class="form-inline" method="POST" action="/registro">
-                <div class="form-group">
-                    <label for="exampleInputName2">Nombre</label>
-                    <input type="text" class="form-control" name="name">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail2">Password</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-                <button type="submit" class="btn btn-warning">Registro</button>
-            </form>
+        <div class="col-md-4 col-md-offset-4">
+            <p class="navbar-text pull-left"><a target="_blank" href="https://github.com/Chinegua"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; Aitor</a>
+            <p class="navbar-text pull-left"><a target="_blank" href="https://github.com/nestor-gm"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; Nestor</a>
+            <p class="navbar-text pull-left"><a target="_blank" href="https://github.com/ozzrocker95"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; Omar</a>
+            </p>
         </div>
-        <div class="col-md-2"></div>
     </div>
+
   
 
 
 </div>
+
 </body>

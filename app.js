@@ -14,10 +14,11 @@ let Strategy = require('passport-twitter').Strategy;
 let GitHubStrategy = require('passport-github').Strategy;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.set('port', (process.env.PORT || 8086));
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+
+app.set('port',(process.env.PORT || 8086));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('./public'));
+
 
 
 let mongoose = require('mongoose');
@@ -258,5 +259,5 @@ app.post('/login',function (req,res) {
     next();
 });*/
 
-app.listen(3001);
+app.listen(3002);
 
