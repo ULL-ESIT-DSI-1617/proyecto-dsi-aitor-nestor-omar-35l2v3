@@ -204,13 +204,18 @@ app.post('/login', function(req, res) {
         'name': req.body.name
     }, function(err, obj) {  
         console.log(obj);
-        if (err) return handleError(err);
-        if (bcrypt.compareSync(req.body.password, obj.password)) {
-            console.log("Usser y pass correctos");
-            console.log("Success!!");
-            req.session.user = req.body.name;
-            res.redirect('/calendar')
+        try {
+            if (err) return handleError(err);
+            if (bcrypt.compareSync(req.body.password, obj.password)) {
+                console.log("Usser y pass correctos");
+                console.log("Success!!");
+                req.session.user = req.body.name;
+                res.redirect('/calendar')
 
+            }
+        }
+        catch(err){
+            res.render('index_error');
         }
     })
 });
