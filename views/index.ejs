@@ -10,20 +10,19 @@
             <h2 class="form-signin-heading">Registro</h2>
             <input type="nick" id="nick" class="form-control" name="name" placeholder="Nick" required autofocus>
             <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-            <button class="btn btn-danger btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button class="btn btn-danger btn-lg btn-primary btn-block" type="submit">Sign up</button>
         </form>
-
-
-    <div class="row">
-        <div class="col-md-4 col-md-offset-2"><h2>Login:</h2></div>
-        <a href="/login/twitter">Log In with Twitter </a>
-        <a href="/login/github">Log In with Github </a>
-
-    </div>
+</div>
 
     <div class="col-md-4 col-md-offset-2 card">
         <form class="form-signin" method="POST" action="/login">
+          <div class="col-md-4">
             <h2 class="form-signin-heading">Login</h2>
+          </div>
+          <div class="col-md-4 col-md-offset-4">
+              <a href="/login/twitter"><button style="margin-top:20px;" type="button" class="btn btn-info"><i class="fa fa-twitter" aria-hidden="true"></i></button></a>
+              <a href="/login/github"><button style="margin-top:20px;" type="button" class="btn btn-warning"><i class="fa fa-github" aria-hidden="true"></i></button></a>
+          </div>
             <input type="nick" id="nick" class="form-control" name="name" placeholder="Nick" required autofocus>
             <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
             <button class="btn btn-success btn-lg btn-primary btn-block" type="submit">Sign in</button>
