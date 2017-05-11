@@ -1,5 +1,7 @@
 let User = require("../models/user");
-
+let strategy = require('passport-github');
+var chai = require('chai');
+var expect = chai.expect;  
 
 let prueba = User({
     nombre: 'Usuario',
@@ -19,5 +21,17 @@ describe("Mongodb funciona correctamente", function () {
   })
 });
 
+describe('passport-github', function() {
+    
+  it('Se exporta correctamente', function() {
+    expect(strategy.Strategy).to.be.a('function');
+  });
+    
+  it('Se exporta como un modulo correctamente', function() {
+    expect(strategy).to.be.a('function');
+    expect(strategy).to.equal(strategy.Strategy);
+  });
+  
+});
 
 
