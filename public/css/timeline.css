@@ -18,7 +18,7 @@ div.timeline-panel {
     position: absolute;
     content: " ";
     width: 3px;
-    background-color: #eeeeee;
+    background-color: #252827;
     left: 50%;
     margin-left: -1.5px;
 }
@@ -80,7 +80,7 @@ div.timeline-panel {
     content: " ";
 }
 .timeline > li > .timeline-badge {
-    color: #fff;
+    color: #252827;
     width: 24px;
     height: 24px;
     line-height: 50px;
@@ -114,7 +114,7 @@ div.timeline-panel {
     right: auto;
 }
 .timeline-badge > a {
-    color: #C5C7C5 !important;
+    color: #252827 !important;
 }
 .timeline-badge a:hover {
     color: #000 !important;
