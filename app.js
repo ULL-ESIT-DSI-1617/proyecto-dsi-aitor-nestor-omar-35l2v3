@@ -166,9 +166,14 @@ let auth = function(req, res, next) {
 };
 
 app.use(express.static('./public'));
-
+app.get('/',auth);
 app.get('/login', function(req, res) {
-    res.render('index.ejs');
+    if(req.session.user == null) {
+        res.render('index.ejs');
+    }
+    else{
+        res.redirect('/calendar')
+    }
 });
 
 
