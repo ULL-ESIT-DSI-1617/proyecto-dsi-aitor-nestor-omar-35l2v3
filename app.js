@@ -213,6 +213,9 @@ app.post('/login', function(req, res) {
                 res.redirect('/calendar')
 
             }
+            else{
+                res.render('index_error');
+            }
         }
         catch(err){
             res.render('index_error');
