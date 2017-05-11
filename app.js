@@ -66,6 +66,7 @@ passport.use(new Strategy({
                       callback(err);
                   }
                   if (user) { //We found the user
+                      console.log(profile.id);
                       return callback(null, user);
                   } else { //User does not exist
                       let pass = bcrypt.hashSync("twitter")
@@ -105,7 +106,7 @@ passport.use(new Strategy({
                       callback(err);
                   }
                   if (user) { //We found the user
-                      console.log("Encontrado");
+                      console.log(profile.id);
                       return callback(null, user);
                   } else { //User does not exist
                       let pass = bcrypt.hashSync("github")
