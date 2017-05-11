@@ -1,0 +1,33 @@
+<% include includes/navbar.ejs %>
+<br>
+<br>
+<br>
+<div class="" container>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="alert alert-success">
+                <strong>Success!</strong> Contraseña cambiada correctamente.
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"><b><%- name%></b></div>
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/content">Calendar</a></li>
+                        <li><a href="/logout">Logout</a></li>
+
+                    </ul>
+                    <form class="form-inline" method="POST" action="/profile">
+                        <div class="form-group">
+                            <label for="exampleInputEmail2">New password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-danger">Cambiar</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+<% include includes/footer.ejs %>

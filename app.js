@@ -243,7 +243,13 @@ app.get('/profile',
 );
 app.get('/profile', function(req, res) {
 
-    res.render('profile.ejs');
+    res.render('profile.ejs',{ name: req.session.user});
+});
+app.post('/profile', function(req, res) {
+    let pass = bcrypt.hashSync(req.body.password)
+    User.findOneAndUpdate({name: req.session.user},{$set:{password:pass}},{new: true},function(err,dox){
+        res.render('profile_success',{ name: req.session.user});
+    })
 });
 
 
