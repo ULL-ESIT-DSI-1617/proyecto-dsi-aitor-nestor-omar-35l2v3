@@ -57,10 +57,11 @@ passport.use(new Strategy({
   function (req, token, tokenSecret, profile, callback) {
     
       
-        console.log(profile.username);
           process.nextTick(function () { //Asynchronous
+            let nombre = '@' + profile.username
+            console.log(nombre)
           User.findOne({
-                  name      : profile.username
+                  name      : nombre
               },
               function (err, user) {
                   if (err) {
@@ -72,7 +73,7 @@ passport.use(new Strategy({
                   } else { //User does not exist
                       let pass = bcrypt.hashSync("twitter")
                       var newUser = new User({
-                          name    : profile.username,
+                          name    : nombre,
                           password : pass
                           }
                       );
@@ -97,10 +98,12 @@ passport.use(new Strategy({
   function (req, token, tokenSecret, profile, callback) {
     
       
-        console.log(profile.username);
+        
           process.nextTick(function () { //Asynchronous
+            let nombre = '#' + profile.username; 
+            console.log(nombre)
           User.findOne({
-                  name      : profile.username
+                  name      : nombre
               },
               function (err, user) {
                   if (err) {
@@ -112,7 +115,7 @@ passport.use(new Strategy({
                   } else { //User does not exist
                       let pass = bcrypt.hashSync("github")
                       var newUser = new User({
-                          name    : profile.username,
+                          name    : nombre,
                           password : pass
                           }
                       );
@@ -253,7 +256,7 @@ app.get('/profile',
     auth // next only if authenticated
 );
 app.get('/profile', function(req, res) {
-
+ 
     res.render('profile.ejs',{ name: req.session.user});
 });
 app.post('/profile', function(req, res) {
