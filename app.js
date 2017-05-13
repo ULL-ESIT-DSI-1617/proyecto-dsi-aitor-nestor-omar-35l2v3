@@ -38,6 +38,21 @@ app.use(session({
 
 //----------------------------------------------- passport
 
+function cleaner(str) {
+    let tam = str.length;
+    return str.substr(1,tam);
+}
+function adder(str) {
+    console.log(str.length);
+    let aux = str;
+    str = [];
+    str += ["-"];
+    for(let i = 0; i<= str.length;i++){
+        str += [aux[i]];
+    }
+    return str;
+}
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -204,7 +219,7 @@ app.get('/login/github/return',
 app.post('/login', function(req, res) {
     console.log(req.body.name);
     User.findOne({
-        'name': req.body.name
+        'name': adder(req.body.name)
     }, function(err, obj) {  
         console.log(obj);
         try {
@@ -229,7 +244,7 @@ app.post('/login', function(req, res) {
 app.post('/registro', function(req, res) {
     let pass = bcrypt.hashSync(req.body.password)
     let user = new User({
-        "name": req.body.name,
+        "name": "-"+req.body.name,
         "password": pass
     });
     user.save(function(err) {
