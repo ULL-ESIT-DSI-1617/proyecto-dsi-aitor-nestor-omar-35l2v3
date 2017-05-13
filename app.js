@@ -310,7 +310,6 @@ app.post('/calendar/create',function (req,res) {
 
 });
 
-
 app.get('/calendar/edit/:id',auth, function(req, res) {
     console.log(req.params.id);
 
@@ -323,7 +322,12 @@ app.get('/calendar/edit/:id',auth, function(req, res) {
     });
 
 });
+app.post('/calendar/edit/:id',auth, function(req, res) {
+    Event.findOneAndUpdate({_id: req.params.id},{$set:{title: req.body.title,date: req.body.date,hour: req.body.hour,description:req.body.description }},{new: true},function(err,dox){
+        res.render('timeline');
+    })
 
+});
 
 /*
 app.use(login);

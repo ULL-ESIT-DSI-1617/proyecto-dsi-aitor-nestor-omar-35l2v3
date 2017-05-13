@@ -8,13 +8,13 @@
                 <form method="post">
                     <div class="form-group"> <!-- Date input -->
                         <label class="control-label" for="date">Titulo</label>
-                        <input class="form-control" id="" name="title" placeholder=<%= title %> type="text"/>
+                        <input class="form-control" id="" name="title" value=<%= title %> type="text"/>
                         <label class="control-label" for="date">Fecha</label>
-                        <input class="form-control" data-format="dd/MM/yyyy hh:mm:ss" id="date" name="date" placeholder=<%= date %> type="text"/>
+                        <input class="form-control" data-format="dd/MM/yyyy hh:mm:ss" id="date" name="date" value=<%= date %> type="text"/>
                         <label class="control-label" for="date">Hora</label>
-                        <input class="form-control" id="" name="hour" placeholder=<%= hour %> type="text"/>
+                        <input class="form-control" id="" name="hour" value=<%= hour %> type="text"/>
                         <label class="control-label" for="date">Descripción</label>
-                        <textarea class="form-control" id="exampleTextarea" name="description" placeholder=<%= description %> rows="3"></textarea>
+                        <textarea class="form-control" id="exampleTextarea" name="description" rows="3"><%= description %></textarea>
                     </div>
                     <div class="form-group"> <!-- Submit button -->
                         <button class="btn btn-primary " name="submit" type="submit">Guardar</button>
