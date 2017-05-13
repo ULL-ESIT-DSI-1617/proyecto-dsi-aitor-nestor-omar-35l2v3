@@ -9,6 +9,7 @@ let util = require("util");
 let jsonfile = require('jsonfile');
 let bodyParser = require('body-parser');
 let bcrypt = require("bcrypt-nodejs");
+var Vigenere = require('vigenere');
 let passport = require('passport');
 let Strategy = require('passport-twitter').Strategy;
 let GitHubStrategy = require('passport-github').Strategy;
@@ -284,16 +285,37 @@ app.get('/calendar/create',auth, function(req, res) {
 
     res.render('create.ejs');
 });
+function find_id() {
+
+}
 app.post('/calendar/create',function (req,res) {
+
     let evento = new Event({
+
         "user" : req.session.user,
         "title": req.body.title,
         "date" : req.body.date,
         "hour" : req.body.hour,
         "description" : req.body.description,
     });
-    evento.save(function(err) {
-        console.log("Evento creado");
+
+    console.log(evento);
+    // evento.save(function(err) {
+    //     console.log("Evento creado");
+    // });
+
+});
+
+
+app.get('/calendar/edit/:id',auth, function(req, res) {
+    console.log(req.params.id);
+
+    Event.findOne({
+            "_id"      : req.params.id,
+        },function (err, event) {
+
+            res.render('edit.ejs',{ user: event.user, title: event.title,date: event.date,hour: event.hour,description:event.description });
+
     });
 
 });
