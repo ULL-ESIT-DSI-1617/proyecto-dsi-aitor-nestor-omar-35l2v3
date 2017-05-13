@@ -6,7 +6,7 @@ let express = require('express'),
 let cookieParser = require('cookie-parser');
 let path = require('path');
 let util = require("util");
-let jsonfile = require('jsonfile')
+let jsonfile = require('jsonfile');
 let bodyParser = require('body-parser');
 let bcrypt = require("bcrypt-nodejs");
 let passport = require('passport');
@@ -43,14 +43,20 @@ function cleaner(str) {
     return str.substr(1,tam);
 }
 function adder(str) {
-    console.log(str.length);
-    let aux = str;
-    str = [];
-    str += ["-"];
-    for(let i = 0; i<= str.length;i++){
-        str += [aux[i]];
+    try {
+        console.log(str.length);
+        let aux = str;
+        str = [];
+        str += ["-"];
+        for (let i = 0; i <= str.length; i++) {
+            str += [aux[i]];
+        }
+        return str;
     }
-    return str;
+    catch(err){
+        return null;
+    }
+
 }
 
 app.use(passport.initialize());
@@ -154,6 +160,7 @@ passport.use(new Strategy({
 //-----------------------------------------------MODELOS
 
 const User = require('./models/user.js');
+const Event = require('./models/evento.js');
 //-----------------------------------------------
 
 let auth = function(req, res, next) {
@@ -161,7 +168,7 @@ let auth = function(req, res, next) {
     let aux = 0;
     console.log(req.session.user);
     User.findOne({
-        'name': req.session.user
+        'name': adder(req.session.user)
     }, function(err, obj) {
         console.log(obj);
         if (obj == null) {
@@ -183,14 +190,11 @@ let auth = function(req, res, next) {
 
 };
 
+
 app.use(express.static('./public'));
-app.get('/',auth);
 app.get('/login', function(req, res) {
     if(req.session.user == null) {
         res.render('index.ejs');
-    }
-    else{
-        res.redirect('/calendar')
     }
 });
 
@@ -261,19 +265,18 @@ app.get('/session', function(req, res) {
 
 });
 
-app.get('/calendar', function(req, res) {
+app.get('/calendar',auth, function(req, res) {
 
     res.render('timeline.ejs');
     //res.send("Entra");
 });
 
-app.get('/profile',
-    auth // next only if authenticated
-);
-app.get('/profile', function(req, res) {
+
+app.get('/profile',auth, function(req, res) {
  
     res.render('profile.ejs',{ name: req.session.user});
 });
+
 app.post('/profile', function(req, res) {
     let pass = bcrypt.hashSync(req.body.password)
     User.findOneAndUpdate({name: req.session.user},{$set:{password:pass}},{new: true},function(err,dox){
@@ -281,11 +284,22 @@ app.post('/profile', function(req, res) {
     })
 });
 
-app.get('/calendar/create',function (req,res) {
-    res.render('create');
+app.get('/calendar/create',auth, function(req, res) {
+
+    res.render('create.ejs');
 });
 app.post('/calendar/create',function (req,res) {
-    console.log(req.body);
+    let evento = new Event({
+        "user" : req.session.user,
+        "title": req.body.title,
+        "date" : req.body.date,
+        "hour" : req.body.hour,
+        "description" : req.body.description,
+    });
+    evento.save(function(err) {
+        console.log("Evento creado");
+    });
+
 });
 
 
