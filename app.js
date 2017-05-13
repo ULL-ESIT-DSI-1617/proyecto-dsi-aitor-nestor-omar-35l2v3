@@ -296,7 +296,7 @@ app.post('/calendar/create',function (req,res) {
 
     let evento = new Event({
 
-        "user" : req.session.user,
+        "user" : adder(req.session.user),
         "title": req.body.title,
         "date" : req.body.date,
         "hour" : req.body.hour,
