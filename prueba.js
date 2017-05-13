@@ -13,4 +13,9 @@ function adder(str) {
     }
     console.log(str.length);
 }
-adder('Chinegua');
+function ObjectId(str){
+    return str;
+
+}
+console.log(ObjectId("591718f36c84cf705bf75a41"));
+591718f36c84cf705bf75a41

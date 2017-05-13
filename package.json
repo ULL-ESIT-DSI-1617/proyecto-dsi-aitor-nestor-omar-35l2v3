@@ -31,7 +31,8 @@
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
     "passport-twitter": "^1.0.4",
-    "should": "^11.2.1"
+    "should": "^11.2.1",
+    "vigenere": "^1.0.2"
   },
   "devDependencies": {
     "gulp": "^3.9.1"
