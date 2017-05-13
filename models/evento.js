@@ -2,9 +2,10 @@ let mongoose = require('mongoose');
 let Schema = require('mongoose').Schema
 
 let Evento = new Schema({
+    user          :   {type: String, required: true},
     title         :   String,
     hour          :   String,
-    date          :   { type: Date, default: Date.now },
+    date          :   String,
     description   :   String,
 
 });

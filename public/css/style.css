@@ -15,6 +15,9 @@ body {
   -webkit-border-radius: 5px 5px 5px 5px;
   border: 0px solid #000000;
 }
+.create_button{
+  padding-top: 1%;
+}
 
 .fa-2x {
   font-size: 2em;
