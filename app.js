@@ -78,9 +78,8 @@ passport.use(new Strategy({
   function (req, token, tokenSecret, profile, callback) {
     
       
-          process.nextTick(function () { //Asynchronous
+          process.nextTick(function () {
             let nombre = '@' + profile.username
-            console.log(nombre)
           User.findOne({
                   name      : nombre
               },
@@ -88,10 +87,9 @@ passport.use(new Strategy({
                   if (err) {
                       callback(err);
                   }
-                  if (user) { //We found the user
-                      console.log(profile.id);
+                  if (user) { 
                       return callback(null, user);
-                  } else { //User does not exist
+                  } else { 
                       let pass = bcrypt.hashSync("twitter")
                       var newUser = new User({
                           name    : nombre,
@@ -120,9 +118,8 @@ passport.use(new Strategy({
     
       
         
-          process.nextTick(function () { //Asynchronous
+          process.nextTick(function () {
             let nombre = '#' + profile.username; 
-            console.log(nombre)
           User.findOne({
                   name      : nombre
               },
@@ -130,10 +127,9 @@ passport.use(new Strategy({
                   if (err) {
                       callback(err);
                   }
-                  if (user) { //We found the user
-                      console.log(profile.id);
+                  if (user) { 
                       return callback(null, user);
-                  } else { //User does not exist
+                  } else { 
                       let pass = bcrypt.hashSync("github")
                       var newUser = new User({
                           name    : nombre,
@@ -171,7 +167,7 @@ let auth = function(req, res, next) {
         'name': adder(req.session.user)
     }, function(err, obj) {
         console.log(obj);
-        if (obj == null) {
+        if ((obj == null) && (req.user.name[0] != '#') && (req.user.name[0] != '@')) { //Para saber si viene de un login passport
             console.log("No hay user en la session");
             aux = 0;
         } else {
@@ -205,7 +201,7 @@ app.get('/login/twitter',
 app.get('/login/twitter/return', 
     passport.authenticate('twitter', { failureRedirect: '/login' }),
     function(req, res) {
-      res.render('timeline.ejs');
+          res.redirect('/calendar')
 });
 
 
@@ -216,7 +212,7 @@ app.get('/login/github/return',
       passport.authenticate('github', { failureRedirect: '/login' }),
       function(req, res) {
       
-        res.render('timeline.ejs');
+    res.redirect('/calendar')
 });
 
 
