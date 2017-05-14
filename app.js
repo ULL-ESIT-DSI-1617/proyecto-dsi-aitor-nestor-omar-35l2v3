@@ -266,13 +266,19 @@ app.get('/session', function(req, res) {
 
 app.get('/calendar',auth, function(req, res) {
     console.log(adder(req.session.user));
+    // Event.find({
+    //     "user" : adder(req.session.user)
+    // },function(req,obj){
+    //     console.log(obj);
+    //     res.render('timeline.ejs',{events:obj});
+    // });
+    //res.send("Entra");
     Event.find({
         "user" : adder(req.session.user)
-    },function(req,obj){
+    }).sort({year:1,month:1,day:1}).exec(function(err, obj){
         console.log(obj);
         res.render('timeline.ejs',{events:obj});
-    });
-    //res.send("Entra");
+        })
 });
 
 
