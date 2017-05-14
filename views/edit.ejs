@@ -9,10 +9,12 @@
                     <div class="form-group"> <!-- Date input -->
                         <label class="control-label" for="date">Titulo</label>
                         <input class="form-control" id="" name="title" value=<%= title %> type="text"/>
-                        <label class="control-label" for="date">Fecha</label>
-                        <input class="form-control" data-format="dd/MM/yyyy hh:mm:ss" id="date" name="date" value=<%= date %> type="text"/>
-                        <label class="control-label" for="date">Hora</label>
-                        <input class="form-control" id="" name="hour" value=<%= hour %> type="text"/>
+                        <label class="control-label" for="date">Día</label>
+                        <input type="text" class="form-control" id="d" value=<%= day %> type="text"/>
+                        <label class="control-label" for="date">Mes</label>
+                        <input type="text" class="form-control" id="m" value=<%= month %> type="text">
+                        <label class="control-label" for="date">Año</label>
+                        <input type="text" class="form-control" id="y" value=<%= year %> type="text">
                         <label class="control-label" for="date">Descripción</label>
                         <textarea class="form-control" id="exampleTextarea" name="description" rows="3"><%= description %></textarea>
                     </div>
