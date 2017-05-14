@@ -45,7 +45,6 @@ function cleaner(str) {
 }
 function adder(str) {
     try {
-        console.log(str.length);
         let aux = str;
         str = [];
         str += ["-"];
@@ -267,8 +266,13 @@ app.get('/session', function(req, res) {
 });
 
 app.get('/calendar',auth, function(req, res) {
-
-    res.render('timeline.ejs');
+    console.log(adder(req.session.user));
+    Event.find({
+        "user" : adder(req.session.user)
+    },function(req,obj){
+        console.log(obj);
+        res.render('timeline.ejs',{events:obj});
+    });
     //res.send("Entra");
 });
 
@@ -289,9 +293,7 @@ app.get('/calendar/create',auth, function(req, res) {
 
     res.render('create.ejs');
 });
-function find_id() {
 
-}
 app.post('/calendar/create',function (req,res) {
 
     let evento = new Event({
@@ -303,10 +305,10 @@ app.post('/calendar/create',function (req,res) {
         "description" : req.body.description,
     });
 
-    console.log(evento);
-    // evento.save(function(err) {
-    //     console.log("Evento creado");
-    // });
+    //console.log(evento);
+     evento.save(function(err) {
+         console.log("Evento creado");
+     });
 
 });
 
