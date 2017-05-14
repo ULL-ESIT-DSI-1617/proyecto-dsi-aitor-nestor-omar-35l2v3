@@ -299,8 +299,9 @@ app.post('/calendar/create',function (req,res) {
 
         "user" : adder(req.session.user),
         "title": req.body.title,
-        "date" : req.body.date,
-        "hour" : req.body.hour,
+        "day"  : req.body.day,
+        "month": req.body.month,
+        "year" : req.body.year,
         "description" : req.body.description,
     });
 
@@ -319,13 +320,13 @@ app.get('/calendar/edit/:id',auth, function(req, res) {
             "_id"      : req.params.id,
         },function (err, event) {
 
-            res.render('edit.ejs',{ user: event.user, title: event.title,date: event.date,hour: event.hour,description:event.description });
+            res.render('edit.ejs',{ user: event.user, title: event.title,day: event.day,month: event.month,year: event.year,description:event.description });
 
     });
 
 });
 app.post('/calendar/edit/:id',auth, function(req, res) {
-    Event.findOneAndUpdate({_id: req.params.id},{$set:{title: req.body.title,date: req.body.date,hour: req.body.hour,description:req.body.description }},{new: true},function(err,dox){
+    Event.findOneAndUpdate({_id: req.params.id},{$set:{title: req.body.title,day: req.body.day,month: req.body.month,year: req.body.year,description:req.body.description }},{new: true},function(err,dox){
         res.redirect('/calendar');
     })
 });
