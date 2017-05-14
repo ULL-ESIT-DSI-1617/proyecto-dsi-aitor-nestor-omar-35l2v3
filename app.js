@@ -166,8 +166,10 @@ let auth = function(req, res, next) {
     User.findOne({
         'name': adder(req.session.user)
     }, function(err, obj) {
+        console.log("Req.user");
+        console.log(req.user);
         console.log(obj);
-        if ((obj == null) /*&& (req.user.name[0] != '#') && (req.user.name[0] != '@')*/) { //Para saber si viene de un login passport
+        if ((obj == null) && (req.user == null)) { //Para saber si viene de un login passport
             console.log("No hay user en la session");
             aux = 0;
         } else {
@@ -201,6 +203,7 @@ app.get('/login/twitter',
 app.get('/login/twitter/return', 
     passport.authenticate('twitter', { failureRedirect: '/login' }),
     function(req, res) {
+          req.session.user = req.user.name;
           res.redirect('/calendar')
 });
 
@@ -244,7 +247,7 @@ app.post('/login', function(req, res) {
 app.post('/registro', function(req, res) {
     let pass = bcrypt.hashSync(req.body.password)
     let user = new User({
-        "name": "-"+req.body.name,
+        "name": req.body.name,
         "password": pass
     });
     user.save(function(err) {
@@ -291,7 +294,7 @@ app.get('/calendar/create',auth, function(req, res) {
 });
 
 app.post('/calendar/create',function (req,res) {
-
+    console.log(req.session.user);
     let evento = new Event({
 
         "user" : adder(req.session.user),
@@ -306,7 +309,7 @@ app.post('/calendar/create',function (req,res) {
          console.log("Evento creado");
          res.redirect("/calendar");
      });
-     res.redirect('/calendar')
+
 });
 
 app.get('/calendar/edit/:id',auth, function(req, res) {
@@ -323,7 +326,7 @@ app.get('/calendar/edit/:id',auth, function(req, res) {
 });
 app.post('/calendar/edit/:id',auth, function(req, res) {
     Event.findOneAndUpdate({_id: req.params.id},{$set:{title: req.body.title,date: req.body.date,hour: req.body.hour,description:req.body.description }},{new: true},function(err,dox){
-        res.render('timeline');
+        res.redirect('/calendar');
     })
 });
 
@@ -334,6 +337,12 @@ app.get('/calendar/delete/:id', function(req, res) {
     console.log(req.params.id);
     res.render('delete.ejs');
   });
+
+});
+
+app.get('/logout', function(req, res) {
+    req.session.destroy();
+    res.redirect("/login");
 
 });
     
