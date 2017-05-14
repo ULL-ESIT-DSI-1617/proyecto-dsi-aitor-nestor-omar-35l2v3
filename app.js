@@ -306,7 +306,7 @@ app.post('/calendar/create',function (req,res) {
          console.log("Evento creado");
          res.redirect("/calendar");
      });
-     res.redirect('/calendar')
+
 });
 
 app.get('/calendar/edit/:id',auth, function(req, res) {
