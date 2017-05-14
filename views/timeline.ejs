@@ -47,13 +47,13 @@
             <div class="timeline-badge primary"><a class="timeline-icon"><i class="glyphicon glyphicon-record invert" rel="tooltip" title="Prueba hace un rato 2" id=""></i></a></div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <p>Prueba2</p>
+                    <p><%= events[i].title%></p>
                 </div>
                 <div class="timeline-body">
-                    <p>Prueba de evento invertido para timeline vertical</p>
+                    <p><%= events[i].description%></p>
                 </div>
                 <div class="timeline-footer">
-                    <a class="pull-right">08/05/2017, 17:34</a>
+                    <a class="pull-right"><%= events[i].date%>, <%= events[i].hour%></a>
                     <a href="/edit" class="btn btn-info" role="button"><i class="fa fa-cog" aria-hidden="true"></i></a>
                     <a href="/delete" class="btn btn-danger" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
                 </div>
