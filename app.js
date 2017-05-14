@@ -306,7 +306,7 @@ app.post('/calendar/create',function (req,res) {
          console.log("Evento creado");
          res.redirect("/calendar");
      });
-
+     res.redirect('/calendar')
 });
 
 app.get('/calendar/edit/:id',auth, function(req, res) {
@@ -325,8 +325,19 @@ app.post('/calendar/edit/:id',auth, function(req, res) {
     Event.findOneAndUpdate({_id: req.params.id},{$set:{title: req.body.title,date: req.body.date,hour: req.body.hour,description:req.body.description }},{new: true},function(err,dox){
         res.render('timeline');
     })
-
 });
+
+
+app.get('/calendar/delete/:id', function(req, res) {
+  Event.remove({'_id' : req.params.id}, function (err, id) {
+    console.log("Eliminando evento");
+  })
+  console.log(req.params.id);
+  res.render('delete.ejs');
+});
+    
+
+
 
 /*
 app.use(login);
