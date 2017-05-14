@@ -278,11 +278,11 @@ app.get('/calendar',auth, function(req, res) {
 });
 
 app.post('/calendar',function (req,res) {
-
+    console.log(req.body);
     Event.find({
-        //"day"    : {$gt: req.body.day_desde, $lt: req.body.day_hasta},
-        "month"  : {$gt: req.body.month_desde, $lt: req.body.month_hasta},
-        // "year": {$gt: req.body.year_desde, $lt: req.body.year_hasta},
+        "day"    : {$gt: req.body.day_desde, $lt: req.body.day_hasta},
+        "month"  : {$gt: req.body.month_desde-1, $lt: req.body.month_hasta+1},
+        "year"   : {$gt: req.body.year_desde-1, $lt: req.body.year_hasta+1},
          "user": adder(req.session.user)
     }).sort({year: 1, month: 1, day: 1}).exec(function (err, obj) {
         console.log(obj);
