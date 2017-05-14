@@ -266,24 +266,30 @@ app.get('/session', function(req, res) {
 
 app.get('/calendar',auth, function(req, res) {
     console.log(adder(req.session.user));
-    // Event.find({
-    //     "user" : adder(req.session.user)
-    // },function(req,obj){
-    //     console.log(obj);
-    //     res.render('timeline.ejs',{events:obj});
-    // });
     //res.send("Entra");
-    Event.find({
-        "day"  : { $gt: req.body.day_desde, $lt: req.body.day_hasta },
-        "month"  : { $gt: req.body.month_desde, $lt: req.body.month_hasta },
-        "year"  : { $gt: req.body.year_desde, $lt: req.body.year_hasta },
-        "user" : adder(req.session.user)
-    }).sort({year:1,month:1,day:1}).exec(function(err, obj){
-        console.log(obj);
-        res.render('timeline.ejs',{events:obj});
-        })
+
+        Event.find({
+            "user" : adder(req.session.user)
+        },function(req,obj){
+            console.log(obj);
+            res.render('timeline.ejs',{events:obj});
+        });
+
 });
 
+app.post('/calendar',function (req,res) {
+
+    Event.find({
+        //"day"    : {$gt: req.body.day_desde, $lt: req.body.day_hasta},
+        "month"  : {$gt: req.body.month_desde, $lt: req.body.month_hasta},
+        // "year": {$gt: req.body.year_desde, $lt: req.body.year_hasta},
+         "user": adder(req.session.user)
+    }).sort({year: 1, month: 1, day: 1}).exec(function (err, obj) {
+        console.log(obj);
+        res.render('timeline.ejs', {events: obj});
+    })
+
+})
 
 app.get('/profile',auth, function(req, res) {
  
