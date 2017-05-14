@@ -4,8 +4,9 @@ let Schema = require('mongoose').Schema
 let Evento = new Schema({
     user          :   {type: String, required: true},
     title         :   String,
-    hour          :   String,
-    date          :   String,
+    day           :   Number,
+    month         :   Number,
+    year          :   Number,
     description   :   String,
 
 });
