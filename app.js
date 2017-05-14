@@ -272,10 +272,10 @@ app.get('/calendar',auth, function(req, res) {
 
         Event.find({
             "user" : adder(req.session.user)
-        },function(req,obj){
+        }).sort({year: 1, month: 1, day: 1}).exec(function (err, obj) {
             console.log(obj);
-            res.render('timeline.ejs',{events:obj});
-        });
+            res.render('timeline.ejs', {events: obj});
+        })
 
 });
 
