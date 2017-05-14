@@ -214,7 +214,7 @@ app.get('/login/github',
 app.get('/login/github/return', 
       passport.authenticate('github', { failureRedirect: '/login' }),
       function(req, res) {
-      
+      req.session.user = req.user.name;
     res.redirect('/calendar')
 });
 
