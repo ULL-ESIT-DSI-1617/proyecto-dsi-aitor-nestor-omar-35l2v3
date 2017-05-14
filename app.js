@@ -164,10 +164,10 @@ let auth = function(req, res, next) {
     let aux = 0;
     console.log(req.session.user);
     User.findOne({
-        'name': adder(req.session.user)
+        'name': req.session.user
     }, function(err, obj) {
         console.log("Req.user");
-        console.log(req.user);
+        //console.log(req.user);
         console.log(obj);
         if ((obj == null) && (req.user == null)) { //Para saber si viene de un login passport
             console.log("No hay user en la session");
@@ -250,10 +250,12 @@ app.post('/registro', function(req, res) {
         "name": req.body.name,
         "password": pass
     });
+    console.log(user);
     user.save(function(err) {
         if (err) return handleError(err);
         console.log("Success!!");
-        req.session.user = req.body.name;
+        req.session.user = user.name;
+        console.log(req.body.name);
         res.redirect('/calendar')
     })
 });
