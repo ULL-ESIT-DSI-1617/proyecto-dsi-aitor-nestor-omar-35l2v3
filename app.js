@@ -167,7 +167,7 @@ let auth = function(req, res, next) {
         'name': adder(req.session.user)
     }, function(err, obj) {
         console.log(obj);
-        if ((obj == null) && (req.user.name[0] != '#') && (req.user.name[0] != '@')) { //Para saber si viene de un login passport
+        if ((obj == null) /*&& (req.user.name[0] != '#') && (req.user.name[0] != '@')*/) { //Para saber si viene de un login passport
             console.log("No hay user en la session");
             aux = 0;
         } else {
@@ -331,9 +331,10 @@ app.post('/calendar/edit/:id',auth, function(req, res) {
 app.get('/calendar/delete/:id', function(req, res) {
   Event.remove({'_id' : req.params.id}, function (err, id) {
     console.log("Eliminando evento");
-  })
-  console.log(req.params.id);
-  res.render('delete.ejs');
+    console.log(req.params.id);
+    res.render('delete.ejs');
+  });
+
 });
     
 
