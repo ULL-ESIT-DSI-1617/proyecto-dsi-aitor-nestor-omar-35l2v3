@@ -294,7 +294,8 @@ app.get('/calendar/create',auth, function(req, res) {
 });
 
 app.post('/calendar/create',function (req,res) {
-    console.log(req.session.user);
+    console.log("Se inserta");
+    console.log(res.body);
     let evento = new Event({
 
         "user" : adder(req.session.user),
@@ -326,7 +327,9 @@ app.get('/calendar/edit/:id',auth, function(req, res) {
 
 });
 app.post('/calendar/edit/:id',auth, function(req, res) {
-    Event.findOneAndUpdate({_id: req.params.id},{$set:{title: req.body.title,day: req.body.day,month: req.body.month,year: req.body.year,description:req.body.description }},{new: true},function(err,dox){
+    console.log("Info a editar");
+    console.log(req.body);
+    Event.findOneAndUpdate({_id: req.params.id},{$set:{title: req.body.title,day: req.body.day ,month: req.body.month,year: req.body.year,description:req.body.description }},{new: true},function(err,dox){
         res.redirect('/calendar');
     })
 });
