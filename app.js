@@ -274,6 +274,9 @@ app.get('/calendar',auth, function(req, res) {
     // });
     //res.send("Entra");
     Event.find({
+        "day"  : { $gt: req.body.day_desde, $lt: req.body.day_hasta },
+        "month"  : { $gt: req.body.month_desde, $lt: req.body.month_hasta },
+        "year"  : { $gt: req.body.year_desde, $lt: req.body.year_hasta },
         "user" : adder(req.session.user)
     }).sort({year:1,month:1,day:1}).exec(function(err, obj){
         console.log(obj);
