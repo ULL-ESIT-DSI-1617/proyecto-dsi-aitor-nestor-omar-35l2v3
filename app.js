@@ -327,6 +327,18 @@ app.post('/calendar/edit/:id',auth, function(req, res) {
     })
 });
 
+
+app.get('/calendar/delete/:id', function(req, res) {
+  Event.remove({'_id' : req.params.id}, function (err, id) {
+    console.log("Eliminando evento");
+  })
+  console.log(req.params.id);
+  res.render('delete.ejs');
+});
+    
+
+
+
 /*
 app.use(login);
 
