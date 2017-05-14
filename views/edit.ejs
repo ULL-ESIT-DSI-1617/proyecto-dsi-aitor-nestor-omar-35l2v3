@@ -8,13 +8,13 @@
                 <form method="post">
                     <div class="form-group"> <!-- Date input -->
                         <label class="control-label" for="date">Titulo</label>
-                        <input class="form-control" id="" name="title" value=<%= title %> type="text"/>
+                        <input class="form-control" id="" name="title" type="text" value=<%= title %> >
                         <label class="control-label" for="date">Día</label>
-                        <input type="text" class="form-control" id="d" value=<%= day %> type="text"/>
+                        <input type="text" class="form-control" id="d" type="text" value=<%= day %> >
                         <label class="control-label" for="date">Mes</label>
-                        <input type="text" class="form-control" id="m" value=<%= month %> type="text">
+                        <input type="text" class="form-control" id="m" type="text" value=<%= month %> >
                         <label class="control-label" for="date">Año</label>
-                        <input type="text" class="form-control" id="y" value=<%= year %> type="text">
+                        <input type="text" class="form-control" id="y" type="text" value=<%= year %> >
                         <label class="control-label" for="date">Descripción</label>
                         <textarea class="form-control" id="exampleTextarea" name="description" rows="3"><%= description %></textarea>
                     </div>
@@ -27,19 +27,5 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-            var date_input=$('input[name="date"]'); //our date input has the name "date"
-            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-            var options={
-                format: 'mm/dd/yyyy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-            };
-            date_input.datepicker(options);
-        })
-    </script>
-
 
 <% include includes/footer.ejs %>
