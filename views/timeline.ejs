@@ -20,6 +20,7 @@
 <div class="container card">
     <div class="row">
         <form method="post">
+            <div class="create_button create_button2">
             <div class="col-md-2 col-md-offset-1">
                 <label class="control-label" for="date">Día</label>
                 <select class="form-control" id="sel1" name="day_desde">
@@ -27,37 +28,24 @@
                     <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option>
                     <option>30</option><option>31</option>
                 </select>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
                 <label class="control-label" for="date">Mes</label>
                 <select class="form-control" id="sel2" name="month_desde">
                     <option>1</option><option>2</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
                 </select>
+            </div>
+            <div class="col-md-2 col-md-offset-1">
                 <label class="control-label" for="date">Año</label>
                 <select class="form-control" id="sel3" name="year_desde">
                     <option>2020</option><option>2019</option><option>2018</option><option>2017</option>
                 </select>
-            </div>
-            <div class="col-md-2 col-md-offset-5">
-                <label class="control-label" for="date">Día</label>
-                <select class="form-control" id="sel1" name="day_hasta">
-                    <option>1</option><option>2</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
-                    <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option>
-                    <option>30</option><option>31</option>
-                </select>
-                <label class="control-label" for="date">Mes</label>
-                <select class="form-control" id="sel2" name="month_hasta">
-                    <option>1</option><option>2</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-                </select>
-                <label class="control-label" for="date">Año</label>
-                <select class="form-control" id="sel3" name="year_hasta">
-                    <option>2020</option><option>2019</option><option>2018</option><option>2017</option>
-                </select>
-                <br>
-                <div class="create_button2">
-                <button class="btn btn-primary " name="submit" type="submit">Guardar</button>
-                </div>
-                <br>
-            </div>
 
+            </div>
+            <div class="create_button3 col-md-2 col-md-offset-1">
+                <button class="btn btn-primary " name="submit" type="submit">Filtrar</button>
+            </div>
+            </div>
 
         </form>
     </div>
@@ -70,7 +58,7 @@
         <% for(var i=0; i<events.length; i++) {%>
         <%if((i % 2) == 0){%>
         <li>
-            <div class="timeline-badge primary"><a class="timeline-icon"><i class="glyphicon glyphicon-record" rel="tooltip" title="Prueba hace un rato" id=""></i></a></div>
+            <div class="timeline-badge primary"><a class="timeline-icon"><i class="glyphicon glyphicon-record" rel="tooltip" title="<%= events[i].title%>" id=""></i></a></div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
                     <p style="position: center;"><%= events[i].title%></p>
@@ -89,7 +77,7 @@
         <% if((i % 2) != 0){ %>
 
         <li class="timeline-inverted">
-            <div class="timeline-badge primary"><a class="timeline-icon"><i class="glyphicon glyphicon-record invert" rel="tooltip" title="Prueba hace un rato 2" id=""></i></a></div>
+            <div class="timeline-badge primary"><a class="timeline-icon"><i class="glyphicon glyphicon-record invert" rel="tooltip" title="<%= events[i].title%>" id=""></i></a></div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
                     <p><%= events[i].title%></p>
