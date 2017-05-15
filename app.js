@@ -9,13 +9,16 @@ let util = require("util");
 let jsonfile = require('jsonfile');
 let bodyParser = require('body-parser');
 let bcrypt = require("bcrypt-nodejs");
-var Vigenere = require('vigenere');
+let Vigenere = require('vigenere');
 let passport = require('passport');
 let Strategy = require('passport-twitter').Strategy;
 let GitHubStrategy = require('passport-github').Strategy;
+
+var pjax = require('express-pjax-middleware');
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(pjax());
 app.set('port',(process.env.PORT || 8086));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('./public'));
@@ -222,7 +225,7 @@ app.get('/login/github/return',
 app.post('/login', function(req, res) {
     console.log(req.body.name);
     User.findOne({
-        'name': adder(req.body.name)
+        'name': req.body.name
     }, function(err, obj) {  
         console.log(obj);
         try {
@@ -250,6 +253,8 @@ app.post('/registro', function(req, res) {
         "name": req.body.name,
         "password": pass
     });
+    console.log("User a insertar");
+    console.log(user);it
     console.log(user);
     user.save(function(err) {
         if (err) return handleError(err);
@@ -282,9 +287,9 @@ app.get('/calendar',auth, function(req, res) {
 app.post('/calendar',function (req,res) {
     console.log(req.body);
     Event.find({
-        "day"    : {$gt: req.body.day_desde, $lt: req.body.day_hasta},
-        "month"  : {$gt: req.body.month_desde-1, $lt: req.body.month_hasta+1},
-        "year"   : {$gt: req.body.year_desde-1, $lt: req.body.year_hasta+1},
+        "day"    : {$gt: req.body.day_desde},
+        "month"  : {$gt: req.body.month_desde-1},
+        "year"   : {$gt: req.body.year_desde-1},
          "user": adder(req.session.user)
     }).sort({year: 1, month: 1, day: 1}).exec(function (err, obj) {
         console.log(obj);
@@ -337,8 +342,8 @@ app.get('/calendar/edit/:id',auth, function(req, res) {
     Event.findOne({
             "_id"      : req.params.id,
         },function (err, event) {
-
-            res.render('edit.ejs',{ user: event.user, title: event.title,day: event.day,month: event.month,year: event.year,description:event.description });
+        res.renderPjax('edit', { user: event.user, title: event.title,day: event.day,month: event.month,year: event.year,description:event.description });
+            //res.render('edit.ejs',{ user: event.user, title: event.title,day: event.day,month: event.month,year: event.year,description:event.description });
 
     });
 
@@ -366,22 +371,6 @@ app.get('/logout', function(req, res) {
     res.redirect("/login");
 
 });
-    
-
-
-
-/*
-app.use(login);
-
-app.get('', function (req, res) {
-    res.send('Hello World!');
-});
-app.get('/hello', function (req, res) {
-    res.send('Hello World!');
-});
-app.post('/login',function (req,res) {
-    next();
-});*/
 
 app.listen(3001);
 
