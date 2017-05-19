@@ -2,7 +2,9 @@ let passport = require('passport');
 let Strategy = require('passport-twitter').Strategy;
 let GitHubStrategy = require('passport-github').Strategy;
 const User = require('../models/user.js');
-
+let config = require('./auth')
+let twStrategy = config.twitterAuth;
+let ghStrategy = config.githubAuth;
 
 module.exports = function(passport) {
   
@@ -17,12 +19,7 @@ module.exports = function(passport) {
 
 
 
-    passport.use(new Strategy({
-      consumerKey: 'MHgOl757iTsvmUaX3nsvJwoCK',
-      consumerSecret: 'UioRKHKZFMIGUmDJfPPUyNQzqsyk0TrcGPodT8lZ3ViXk2pH5Z',
-      callbackURL: 'http://localhost:3001/login/twitter/return'
-    },
-    
+    passport.use(new Strategy(twStrategy,
     function (req, token, tokenSecret, profile, callback) {
       
         
@@ -57,11 +54,7 @@ module.exports = function(passport) {
         });
     }));
   
-    passport.use(new GitHubStrategy({
-      clientID: '1db3c11f622dce53865c',
-      clientSecret: 'aedc1432b6c85c022af69356e7735ee18c93beba',
-      callbackURL: "http://localhost:3001/login/github/return"
-    },
+    passport.use(new GitHubStrategy(ghStrategy,
     function (req, token, tokenSecret, profile, callback) {
       
         
