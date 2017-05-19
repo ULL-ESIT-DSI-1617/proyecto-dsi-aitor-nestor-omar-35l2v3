@@ -339,6 +339,7 @@ app.post('/calendar/create',function (req,res) {
 app.get('/calendar/edit/:id',auth, function(req, res) {
     console.log(req.params.id);
 
+
     Event.findOne({
             "_id"      : req.params.id,
         },function (err, event) {

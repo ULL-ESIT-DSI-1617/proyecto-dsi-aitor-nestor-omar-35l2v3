@@ -68,8 +68,44 @@
                 </div>
                 <div class="timeline-footer">
                     <a class="pull-right"><%= events[i].day%>/<%= events[i].month%>/<%= events[i].year%></a>
-                    <a href="calendar/edit/<%=events[i]._id%>" class="btn btn-info" role="button"><i class="fa fa-cog" aria-hidden="true"></i></i></a>
+                    <a href="calendar/edit/<%=events[i]._id%>" class="btn btn-info" role="button" data-toggle="modal" data-target="#<%=events[i]._id%>"><i class="fa fa-cog" aria-hidden="true"></i></i></a>
+
                     <a href="calendar/delete/<%=events[i]._id%>" class="btn btn-danger" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="modal fade" id="<%=events[i]._id%>" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 card">
+
+                                <!-- Form code begins -->
+                                <form method="post" action="calendar/edit/<%= events[i]._id%>">
+                                    <div class="form-group"> <!-- Date input -->
+                                        <label class="control-label" for="date">Titulo</label>
+                                        <input class="form-control" id="" name="title" type="text" value=<%= events[i].title %> >
+                                        <label class="control-label" for="date">Día</label>
+                                        <input type="text" class="form-control" name="day" id="d" type="text" value=<%= events[i].day %> >
+                                        <label class="control-label" for="date">Mes</label>
+                                        <input type="text" class="form-control" name="month" id="m" type="text" value=<%= events[i].month %> >
+                                        <label class="control-label" for="date">Año</label>
+                                        <input type="text" class="form-control" name="year" id="y" type="text" value=<%= events[i].year %> >
+                                        <label class="control-label" for="date">Descripción</label>
+                                        <textarea class="form-control" id="exampleTextarea" name="description" rows="3"><%= events[i].description %></textarea>
+                                    </div>
+                                    <div class="form-group"> <!-- Submit button -->
+                                        <button class="btn btn-primary " name="submit" type="submit">Guardar</button>
+                                    </div>
+                                </form>
+                                <!-- Form code ends -->
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </li>
@@ -87,8 +123,43 @@
                 </div>
                 <div class="timeline-footer">
                     <a class="pull-right"><%= events[i].day%>/<%= events[i].month%>/<%= events[i].year%></a>
-                    <a href="calendar/edit/<%=events[i]._id%>" class="btn btn-info" role="button"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    <a href="calendar/edit/<%=events[i]._id%>" class="btn btn-info" role="button" data-toggle="modal" data-target="#<%=events[i]._id%>"><i class="fa fa-cog" aria-hidden="true"></i></i></a>
                     <a href="calendar/delete/<%=events[i]._id%>" class="btn btn-danger" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="modal fade" id="<%=events[i]._id%>" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 card">
+
+                                <!-- Form code begins -->
+                                <form method="post" action="calendar/edit/<%= events[i]._id%>">
+                                    <div class="form-group"> <!-- Date input -->
+                                        <label class="control-label" for="date">Titulo</label>
+                                        <input class="form-control" id="" name="title" type="text" value=<%= events[i].title %> >
+                                        <label class="control-label" for="date">Día</label>
+                                        <input type="text" class="form-control" name="day" id="d" type="text" value=<%= events[i].day %> >
+                                        <label class="control-label" for="date">Mes</label>
+                                        <input type="text" class="form-control" name="month" id="m" type="text" value=<%= events[i].month %> >
+                                        <label class="control-label" for="date">Año</label>
+                                        <input type="text" class="form-control" name="year" id="y" type="text" value=<%= events[i].year %> >
+                                        <label class="control-label" for="date">Descripción</label>
+                                        <textarea class="form-control" id="exampleTextarea" name="description" rows="3"><%= events[i].description %></textarea>
+                                    </div>
+                                    <div class="form-group"> <!-- Submit button -->
+                                        <button class="btn btn-primary " name="submit" type="submit">Guardar</button>
+                                    </div>
+                                </form>
+                                <!-- Form code ends -->
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </li>
@@ -101,4 +172,10 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/timeline.js"></script>
+<script>
+function edit(id){
+    html =
+}
+
+</script>
 <% include includes/footer.ejs %>
