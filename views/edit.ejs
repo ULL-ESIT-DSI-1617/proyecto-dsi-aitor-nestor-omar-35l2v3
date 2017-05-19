@@ -1,11 +1,11 @@
-<% include includes/navbar.ejs %>
+
 <div class="bootstrap-iso">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 card">
 
                 <!-- Form code begins -->
-                <form method="post">
+                <form method="post" action="/edit/<%= _id%>">
                     <div class="form-group"> <!-- Date input -->
                         <label class="control-label" for="date">Titulo</label>
                         <input class="form-control" id="" name="title" type="text" value=<%= title %> >
@@ -28,4 +28,3 @@
         </div>
     </div>
 
-<% include includes/footer.ejs %>
