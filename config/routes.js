@@ -1,5 +1,6 @@
 const User = require('../models/user.js');
 const Event = require('../models/evento.js');
+let bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(app,passport) {
   
@@ -104,8 +105,6 @@ module.exports = function(app,passport) {
             "password": pass
         });
         console.log("User a insertar");
-        console.log(user);it
-        console.log(user);
         user.save(function(err) {
             if (err) return handleError(err);
             console.log("Success!!");
