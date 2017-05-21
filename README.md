@@ -19,9 +19,9 @@
 
 ### Creación de eventos
 
-![](https://goo.gl/l5WBL0)
+![](https://goo.gl/jBSDb0)
 
-![](https://goo.gl/TpsSqs)
+![](https://goo.gl/b2Acnv)
 
 ### Edición y eliminación de eventos
 
@@ -31,8 +31,8 @@
 
 ### Filtrado de eventos
 
-![](https://goo.gl/wl7sYS)
+![](https://goo.gl/6MJg5h)
 
 ### Perfil de usuario y logout
 
-![](https://goo.gl/5Bebdn)
+![](https://goo.gl/2mraXi)
