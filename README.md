@@ -1,7 +1,8 @@
 [![Build Status](https://travis-ci.org/ULL-ESIT-DSI-1617/proyecto-dsi-aitor-nestor-omar-35l2v3.svg?branch=master)](https://travis-ci.org/ULL-ESIT-DSI-1617/proyecto-dsi-aitor-nestor-omar-35l2v3)
+[![Dependencies](https://img.shields.io/david/expressjs/express.svg)]()
 [![MongoDB](https://img.shields.io/badge/mongodb-v3.4.4-green.svg)]()
 [![AllContributors](https://img.shields.io/badge/all_contributors-3-blue.svg?style=flat-square)](#contributors)
-[![Dependencies](https://img.shields.io/david/expressjs/express.svg)]()
+
 
 # Proyecto: Timeline de eventos
 
@@ -15,24 +16,24 @@
 
 ### Login del usuario
 
-![](https://goo.gl/nhoyUs)
+![](https://media.giphy.com/media/w4FVFCvrDnruU/giphy.gif)
 
 ### Creación de eventos
 
-![](https://goo.gl/jBSDb0)
+![](https://media.giphy.com/media/11EJMbtipZ3etG/giphy.gif)
 
-![](https://goo.gl/b2Acnv)
+![](https://media.giphy.com/media/3phEAOtbGruVi/giphy.gif)
 
 ### Edición y eliminación de eventos
 
-![](https://goo.gl/6cnZsQ)
+![](https://media.giphy.com/media/Pgm4WKsey7jeE/giphy.gif)
 
-![](https://goo.gl/A3RtbY)
+![](https://media.giphy.com/media/UG0h9O5W4cOT6/giphy.gif)
 
 ### Filtrado de eventos
 
-![](https://goo.gl/6MJg5h)
+![](https://media.giphy.com/media/13pR3P8ewRcmWI/giphy.gif)
 
 ### Perfil de usuario y logout
 
-![](https://goo.gl/2mraXi)
+![](https://media.giphy.com/media/kUnTaJt5kag2Q/giphy.gif)
